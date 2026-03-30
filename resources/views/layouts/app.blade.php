@@ -81,82 +81,82 @@
 </head>
 <body>
 
-{{-- SIDEBAR --}}
-<div class="sidebar">
-    <div class="brand">
-        <i class="fas fa-boxes fa-2x text-white mb-2"></i>
-        <h5>GESTION STOCK</h5>
-        <p>ALL SOLUTION TECH</p>
-    </div>
-    <nav>
-        <div class="nav-section-title">Principal</div>
-        <a href="{{ route('dashboard') }}"
-           class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-            <i class="fas fa-tachometer-alt"></i> Tableau de bord
-        </a>
-
-        <div class="nav-section-title">Gestion</div>
-        <a href="{{ route('produits.index') }}"
-           class="nav-link {{ request()->routeIs('produits.*') ? 'active' : '' }}">
-            <i class="fas fa-box"></i> Produits
-        </a>
-        <a href="{{ route('categories.index') }}"
-           class="nav-link {{ request()->routeIs('categories.*') ? 'active' : '' }}">
-            <i class="fas fa-tags"></i> Catégories
-        </a>
-        <a href="{{ route('fournisseurs.index') }}"
-           class="nav-link {{ request()->routeIs('fournisseurs.*') ? 'active' : '' }}">
-            <i class="fas fa-truck"></i> Fournisseurs
-        </a>
-
-        <div class="nav-section-title">Mouvements</div>
-        <a href="{{ route('entrees.index') }}"
-           class="nav-link {{ request()->routeIs('entrees.*') ? 'active' : '' }}">
-            <i class="fas fa-arrow-circle-down text-success"></i> Entrées Stock
-        </a>
-        <a href="{{ route('sorties.index') }}"
-           class="nav-link {{ request()->routeIs('sorties.*') ? 'active' : '' }}">
-            <i class="fas fa-arrow-circle-up text-danger"></i> Sorties Stock
-        </a>
-
-        <div class="nav-section-title">Compte</div>
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit" class="nav-link btn btn-link w-100 text-start">
-                <i class="fas fa-sign-out-alt"></i> Déconnexion
-            </button>
-        </form>
-    </nav>
-</div>
-
-{{-- CONTENU PRINCIPAL --}}
-<div class="main-content">
-    <div class="navbar-top">
-        <h6 class="mb-0 fw-bold">@yield('titre', 'Tableau de bord')</h6>
-        <div class="d-flex align-items-center gap-2">
-            <i class="fas fa-user-circle fa-lg text-secondary"></i>
-            <span class="text-secondary small">{{ Auth::user()->name }}</span>
+    {{-- SIDEBAR --}}
+    <div class="sidebar">
+        <div class="brand">
+            <i class="fas fa-boxes fa-2x text-white mb-2"></i>
+            <h5>GESTION STOCK</h5>
+            <p>ALL SOLUTION TECH</p>
         </div>
+        <nav>
+            <div class="nav-section-title">Principal</div>
+            <a href="{{ route('dashboard') }}"
+            class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                <i class="fas fa-tachometer-alt"></i> Tableau de bord
+            </a>
+
+            <div class="nav-section-title">Gestion</div>
+            <a href="{{ route('produits.index') }}"
+            class="nav-link {{ request()->routeIs('produits.*') ? 'active' : '' }}">
+                <i class="fas fa-box"></i> Produits
+            </a>
+            <a href="{{ route('categories.index') }}"
+            class="nav-link {{ request()->routeIs('categories.*') ? 'active' : '' }}">
+                <i class="fas fa-tags"></i> Catégories
+            </a>
+            <a href="{{ route('fournisseurs.index') }}"
+            class="nav-link {{ request()->routeIs('fournisseurs.*') ? 'active' : '' }}">
+                <i class="fas fa-truck"></i> Fournisseurs
+            </a>
+
+            <div class="nav-section-title">Mouvements</div>
+            <a href="{{ route('entrees.index') }}"
+            class="nav-link {{ request()->routeIs('entrees.*') ? 'active' : '' }}">
+                <i class="fas fa-arrow-circle-down text-success"></i> Entrées Stock
+            </a>
+            <a href="{{ route('sorties.index') }}"
+            class="nav-link {{ request()->routeIs('sorties.*') ? 'active' : '' }}">
+                <i class="fas fa-arrow-circle-up text-danger"></i> Sorties Stock
+            </a>
+
+            <div class="nav-section-title">Compte</div>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="nav-link btn btn-link w-100 text-start">
+                    <i class="fas fa-sign-out-alt"></i> Déconnexion
+                </button>
+            </form>
+        </nav>
     </div>
 
-    {{-- ALERTES --}}
-    @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <i class="fas fa-check-circle me-2"></i>{{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    {{-- CONTENU PRINCIPAL --}}
+    <div class="main-content">
+        <div class="navbar-top">
+            <h6 class="mb-0 fw-bold">@yield('titre', 'Tableau de bord')</h6>
+            <div class="d-flex align-items-center gap-2">
+                <i class="fas fa-user-circle fa-lg text-secondary"></i>
+                <span class="text-secondary small">{{ Auth::user()->name }}</span>
+            </div>
         </div>
-    @endif
-    @if(session('error'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <i class="fas fa-exclamation-circle me-2"></i>{{ session('error') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    @endif
 
-    @yield('content')
-</div>
+        {{-- ALERTES --}}
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="fas fa-check-circle me-2"></i>{{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        @endif
+        @if(session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="fas fa-exclamation-circle me-2"></i>{{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        @endif
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-@stack('scripts')
+        @yield('content')
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @stack('scripts')
 </body>
 </html>
