@@ -20,7 +20,9 @@ RUN cp .env.example .env && php artisan key:generate
 
 RUN php artisan migrate --seed --force
 
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN touch database/database.sqlite && \
+    chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database && \
+    chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 
