@@ -18,6 +18,8 @@ RUN mkdir -p public/build && echo '{"version":"1","entrypoints":[]}' > public/bu
 
 RUN cp .env.example .env && php artisan key:generate
 
+RUN php artisan migrate --seed --force
+
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
