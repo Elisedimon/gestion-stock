@@ -17,8 +17,17 @@ class RapportController extends Controller
                   ->setPaper('a4', 'landscape');
 
         $filename = 'rapport-stock-' . date('d-m-Y') . '.pdf';
+        $content  = $pdf->output();
 
-        return $pdf->download($filename);
+        return response($content, 200, [
+            'Content-Type'              => 'application/pdf',
+            'Content-Disposition'       => 'attachment; filename="' . $filename . '"',
+            'Content-Length'            => strlen($content),
+            'Cache-Control'             => 'no-cache, no-store, must-revalidate',
+            'Pragma'                    => 'no-cache',
+            'Expires'                   => '0',
+            'X-Content-Type-Options'    => 'nosniff',
+        ]);
     }
 
     public function mouvements()
@@ -33,7 +42,16 @@ class RapportController extends Controller
         ))->setPaper('a4', 'portrait');
 
         $filename = 'rapport-mouvements-' . date('d-m-Y') . '.pdf';
+        $content  = $pdf->output();
 
-        return $pdf->download($filename);
+        return response($content, 200, [
+            'Content-Type'              => 'application/pdf',
+            'Content-Disposition'       => 'attachment; filename="' . $filename . '"',
+            'Content-Length'            => strlen($content),
+            'Cache-Control'             => 'no-cache, no-store, must-revalidate',
+            'Pragma'                    => 'no-cache',
+            'Expires'                   => '0',
+            'X-Content-Type-Options'    => 'nosniff',
+        ]);
     }
 }
